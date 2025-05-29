@@ -22,7 +22,8 @@ A React web application that displays the most popular video games and lets you 
  
 ## Screenshots
 
--Current Home Page:
+**Current Home Page:**
+
 ![screenshot placeholder](video-game-music-app/public/screenshot.png)
 
 ---
