@@ -1,18 +1,23 @@
 import {useState} from 'react';
+import useDebounce from '../hooks/Debounce';
+import useFetchGames from '../hooks/useFetchGames'
 
-function SearchBar(){
+function SearchBar({searchGame, setSearchGame}){
 
-    // Will handle and store our users search
-    const [searchGame, setSearchGame] = useState("");
+    // Handles our debounced search, 1000ms delay or 1 second
+    const debouncedSearch = useDebounce(searchGame, 1000);
+
+    // dbouncted search for getting our values
+    const {data, isLoading, error} = useFetchGames(debouncedSearch);
 
     // Handles our search and sets it to the input
     const handleSearchInput = (e) =>{
-        const searchGame = e.target.value;
-        setSearchGame(searchGame);
+        setSearchGame(e.target.value);
     }
 
 
     return(
+        <>
         <div className='ms-auto'>
             <form className="form-inline my-2 my-lg-0">
             <input
@@ -23,8 +28,9 @@ function SearchBar(){
             placeholder='Search for a game...'
             />
             </form>
-        </div>
-    )
+            </div>
+        </>
+    );
 }
 
 export default SearchBar;

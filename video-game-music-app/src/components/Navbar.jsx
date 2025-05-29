@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import '../styles/Navbar.css'
 
-function Navbar() {
+function Navbar({searchGame, setSearchGame}) {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,7 +23,7 @@ function Navbar() {
             </Link>
           </li>
         </ul>
-        <SearchBar />
+        <SearchBar searchGame={searchGame} setSearchGame={setSearchGame} />
       </nav>
     </>
   );
