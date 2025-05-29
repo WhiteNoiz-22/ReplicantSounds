@@ -1,0 +1,32 @@
+import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
+import '../styles/Navbar.css'
+
+function Navbar() {
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul className="navbar-nav mr-auto">
+          <li>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+          </li>{" "}
+          <li>
+            <Link to="/library" className="nav-link">
+              Library
+            </Link>
+          </li>{" "}
+          <li>
+            <Link to="/soundtracks" className="nav-link">
+              Soundtracks
+            </Link>
+          </li>
+        </ul>
+        <SearchBar />
+      </nav>
+    </>
+  );
+}
+
+export default Navbar;
