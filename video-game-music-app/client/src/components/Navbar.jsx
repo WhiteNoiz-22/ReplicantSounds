@@ -8,7 +8,7 @@ function Navbar({searchGame, setSearchGame}) {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <ul className="navbar-nav mr-auto">
           <li>
-            <Link to="/" className="nav-link">
+            <Link to="/home" className="nav-link">
               Home
             </Link>
           </li>{" "}

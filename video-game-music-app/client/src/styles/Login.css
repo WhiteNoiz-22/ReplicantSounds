@@ -1,0 +1,14 @@
+.my-form{
+    margin-top: 15rem;
+    padding: 2rem;
+    background-color: rgb(238, 238, 238);
+    margin-inline: auto;
+    border: 1px none;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.301);
+}
+
+.btn-form{
+    background-color: red;
+}
+

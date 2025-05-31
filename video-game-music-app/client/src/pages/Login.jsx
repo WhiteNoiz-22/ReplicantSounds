@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import '../styles/Login.css';
 
-function Login(props){
+function Login(){
 
     // Stores and sets our users email, initially empty string
     const [email, setEmail] = useState('');
@@ -37,19 +38,19 @@ function Login(props){
 
     return(
         <>
-        <h1>Login</h1>
-        <div>
+        <div className="my-form">
+                    <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" placeholder="Enter Email" onChange={e => setEmail(e.target.value)}/>
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Email</label>
+                    <input type="email" placeholder="Enter Email" onChange={e => setEmail(e.target.value)} className="form-control"/>
                 </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input type="password" placeholder="Enter Password" onChange={e => setPassword(e.target.value)}/>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input type="password" placeholder="Enter Password" onChange={e => setPassword(e.target.value)} className="form-control"/>
 
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit" className="btn btn-primary">Login</button>
                 {error && <p>An error has occured: {error}</p>}
             </form>
         </div>

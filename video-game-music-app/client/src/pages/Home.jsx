@@ -57,7 +57,7 @@ function Home({searchGame}) {
 
     return (
       <>
-        <button onClick={handleLogout}>Logout?</button>
+        <button onClick={handleLogout} type="button" class="btn btn-primary">Logout?</button>
         <h1>Results:</h1>
         <div className="containers">
           {searchData && searchData.results && searchData.results.length > 0 ? (
@@ -100,7 +100,7 @@ function Home({searchGame}) {
 function DisplayHome({ data, handleLogout}) {
   return (
     <>
-              <button onClick={handleLogout}>Logout?</button>
+      <button onClick={handleLogout} type="button" class="btn btn-primary">Logout?</button>
       <h1>Welcome!</h1>
       <h2>Most Popular Video Games</h2>
       <div className="containers">
