@@ -4,8 +4,19 @@ import "../styles/Home.css";
 import SearchOnMusicAppsButton from "../components/SearchOnMusicApps";
 import useDebounce from "../hooks/Debounce";
 import useFetchGames from "../hooks/useFetchGames";
+import { useNavigate } from "react-router";
 
 function Home({searchGame}) {
+
+  // Our navigate hook
+  const navigate = useNavigate();
+
+  // Handles logging out and redirects user to the login page
+  const handleLogout = () => {
+    navigate('/login');
+  }
+
+
   // Fetches API using axios
   const fetchGames = async () => {
     const url = `https://api.rawg.io/api/games?key=${
@@ -46,6 +57,7 @@ function Home({searchGame}) {
 
     return (
       <>
+        <button onClick={handleLogout}>Logout?</button>
         <h1>Results:</h1>
         <div className="containers">
           {searchData && searchData.results && searchData.results.length > 0 ? (
@@ -80,14 +92,15 @@ function Home({searchGame}) {
 
   return(
     <>
-    <DisplayHome data={data}/>
+    <DisplayHome data={data} handleLogout={handleLogout}/>
     </>
   )
 }
 
-function DisplayHome({ data }) {
+function DisplayHome({ data, handleLogout}) {
   return (
     <>
+              <button onClick={handleLogout}>Logout?</button>
       <h1>Welcome!</h1>
       <h2>Most Popular Video Games</h2>
       <div className="containers">
