@@ -1,10 +1,9 @@
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import "../styles/Home.css";
 import SearchOnMusicAppsButton from "../components/SearchOnMusicApps";
 import useDebounce from "../hooks/Debounce";
 import useFetchGames from "../hooks/useFetchGames";
 import { useNavigate } from "react-router";
+
 
 function Home({searchGame}) {
 
@@ -17,29 +16,16 @@ function Home({searchGame}) {
   }
 
 
-  // Fetches API using axios
-  const fetchGames = async () => {
-    const url = `https://api.rawg.io/api/games?key=${
-      import.meta.env.VITE_API_KEY
-    }`;
-    const response = await axios.get(url);
-    return response.data;
-  };
-
-  // Handles our API calls
-  const { data, error, isPending } = useQuery({
-    queryKey: ["games"],
-    queryFn: fetchGames,
-    //Ensures that we don't do unnesscary API calls, our staletime is an hour
-    staleTime: 1000 * 60 * 60,
-    refetchOnWindowFocus: false,
-    enabled: !searchGame,
-  });
-
   // Stores our search query, and debounces it by 1 second to reduce unnecessary API calls
   const debouncedSearch = useDebounce(searchGame, 1000);
 
-  // Our parameters form our useFetchGames query hook
+  // Our parameters from out default page for useFetchGames, this is the default if we dont have a search query
+  const {
+    data: data
+  } = useFetchGames();
+
+
+  // Our parameters from our useFetchGames query hook, for getting our search results
   const {
     data: searchData,
     isPending: isSearchLoading,
@@ -47,8 +33,8 @@ function Home({searchGame}) {
   } = useFetchGames(debouncedSearch);
 
   // Checks for errors and loading
-  if (isPending) return <h1>Loading... Please Wait!</h1>;
-  if (error) return <h1>An error has occured: {error.message}</h1>;
+  if (isSearchLoading) return <h1>Loading... Please Wait!</h1>;
+  if (searchError) return <h1>An error has occured: {error.message}</h1>;
 
   // If we have a search query, we return 10 results if available
   if (debouncedSearch) {
@@ -61,7 +47,7 @@ function Home({searchGame}) {
         <h1>Results:</h1>
         <div className="containers">
           {searchData && searchData.results && searchData.results.length > 0 ? (
-            searchData.results.slice(0, 10).map((game) => (
+            searchData.results.map((game) => (
               <div key={game.id} className="card">
                 <img
                   src={game.background_image}
@@ -97,14 +83,20 @@ function Home({searchGame}) {
   )
 }
 
-function DisplayHome({ data, handleLogout}) {
+function DisplayHome({ data, handleLogout }) {
+
+  if(!data || !data.results){
+    return <h1>Loading games... please wait!</h1>
+  }
+
+
   return (
-    <>
+    <> 
       <button onClick={handleLogout} type="button" class="btn btn-primary">Logout?</button>
       <h1>Welcome!</h1>
       <h2>Most Popular Video Games</h2>
       <div className="containers">
-        {data.results.slice(0, 10).map((game) => (
+        {data.results.slice(0, 21).map((game) => (
           <div key={game.id} className="card">
             <img
               src={game.background_image}

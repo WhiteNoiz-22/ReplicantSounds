@@ -9,7 +9,7 @@ function useFetchGames(query) {
       import.meta.env.VITE_API_KEY
     }`;
     //Adds a search extension to our url with the query, if we have one
-    if (query) {
+    if (query && query.trim() && query.length > 0) {
       url += `&search=${encodeURIComponent(query)}`;
     }
     const response = await axios.get(url);
@@ -19,7 +19,7 @@ function useFetchGames(query) {
   return useQuery({
     queryKey: ["games", query],
     queryFn: fetchGames,
-    enabled: !!query,
+    enabled: true,
     //Ensures that we don't do unnesscary API calls, our staletime is an hour
     staleTime: 1000 * 60 * 60,
     refetchOnWindowFocus: false,

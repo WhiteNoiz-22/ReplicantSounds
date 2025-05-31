@@ -25,6 +25,7 @@ function Login(){
             // Sends request to server
             const response = await axios.post('http://localhost:3000/api/login', {email, password});
 
+            // If we have a positive response, we navigate to homepage
             if(response.status === 200){
                 navigate('/home');
             }
@@ -39,7 +40,7 @@ function Login(){
     return(
         <>
         <div className="my-form">
-                    <h1>Login</h1>
+        <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email</label>
