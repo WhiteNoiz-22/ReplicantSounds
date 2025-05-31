@@ -28,6 +28,8 @@ A React web application that displays the most popular video games and lets you 
 
 ![searchbar](video-game-music-app/public/search.png)
 
+![searchbar](video-game-music-app/public/loginpage1.png)
+
 ---
 
 ## Getting Started

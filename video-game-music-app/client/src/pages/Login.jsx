@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import axios from "axios";
 import '../styles/Login.css';
 
@@ -23,7 +23,7 @@ function Login(){
             setError('');
 
             // Sends request to server
-            const response = await axios.post('http://localhost:3000/login', {email, password});
+            const response = await axios.post('http://localhost:3000/api/login', {email, password});
 
             if(response.status === 200){
                 navigate('/home');
@@ -51,6 +51,7 @@ function Login(){
 
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
+                <Link className="btn btn-default" to="/signup">Register Here</Link>
                 {error && <p>An error has occured: {error}</p>}
             </form>
         </div>
