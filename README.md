@@ -74,6 +74,9 @@ A React web application that displays the most popular video games and lets you 
 
 - [React](https://react.dev/)
 - [Vite](https://vitejs.dev/)
+- [MySQL](https://www.mysql.com/)
+- [ExpressJs](https://expressjs.com/)
+- [NodeJs](https://nodejs.org/en)
 - [React Query](https://tanstack.com/query/latest)
 - [Bootstrap](https://getbootstrap.com/)
 - [RAWG Video Games Database API](https://rawg.io/apidocs)
