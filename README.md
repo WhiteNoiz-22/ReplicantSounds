@@ -10,6 +10,7 @@ A React web application that displays the most popular video games and lets you 
 - **Responsive UI:** Clean, responsive layout using Bootstrap and custom CSS.
 - **Navigation:** Simple navbar for Home, Library, and Soundtracks pages.
 - **Search Functionality:** Users can search for games they like using the search bar and add them to their library.
+- **User Authenthication**: Users create an account for the app and login (note: This feature is in progress and more will be implemented soon, such as a logout feature).
 
 ---
 
@@ -31,9 +32,7 @@ A React web application that displays the most popular video games and lets you 
 ![login](video-game-music-app/client/public/loginpage1.png
 )
 
-![searchbar](video-game-music-app/public/loginpage1.png)
-
-![signup](video-game-music-app/public/sign-up.png)
+![signup](video-game-music-app/client/public/sign-up.png)
 
 ---
 
