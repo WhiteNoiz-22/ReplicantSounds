@@ -1,6 +1,6 @@
 ﻿# Video Game Music App
 
-A React web application that displays the most popular video games and lets you quickly search for their soundtracks on Spotify or YouTube. Built with Vite, React Query, Bootstrap, and the RAWG Video Games Database API.
+A React web application that displays the most popular video games and lets you quickly search for their soundtracks on Spotify or YouTube. Built with ReactJs, Vite, MySQL, Express, NodeJs, React Query, Bootstrap, and the RAWG Video Games Database API.
 
 ---
 
