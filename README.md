@@ -25,7 +25,7 @@ A React web application that displays the most popular video games and lets you 
 
 **Current Home Page:**
 
-![screenshot placeholder](video-game-music-app/client/public/welcome message.png)
+![screenshot placeholder](video-game-music-app/client/public/welcomemessage.png)
 
 ![searchbar](video-game-music-app/client/public/search.png)
 
