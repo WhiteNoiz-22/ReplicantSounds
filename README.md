@@ -9,8 +9,8 @@ A React web application that displays the most popular video games and lets you 
 - **Popular Games:** View a grid of the most popular video games with images, release year, ratings. It also includes auto-searches for the games soundtrack, which will redirect you to the apps when the buttons are pressed.
 - **Responsive UI:** Clean, responsive layout using Bootstrap and custom CSS.
 - **Navigation:** Simple navbar for Home, Library, and Soundtracks pages.
-- **Search Functionality:** Users can search for games they like using the search bar and add them to their library.
-- **User Authenthication**: Users create an account for the app and login (note: This feature is in progress and more will be implemented soon, such as a logout feature).
+- **Search Functionality:** Users can search for games they like using the search bar.
+- **User Authenthication**: Users create an account for the app, login and logout.
 
 ---
 
