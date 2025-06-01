@@ -8,15 +8,18 @@ import Soundtracks from "./pages/Soundtracks";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
+  // Stores our data variables here so that we can use them inside of other components
   const [searchGame, setSearchGame] = useState("");
+  const [username, setUsername] = useState("");
 
   const location = useLocation();
 
   // Only show Navbar if not on /login
-  const showNavbar = location.pathname !== "/login" && "/signup";
-  const showFooter = location.pathname !== "/login" && "/signup";
+  const showNavbar = location.pathname !== "/login" && location.pathname !== "/signup";
+  const showFooter = location.pathname !== "/login" && location.pathname !== "/signup";
 
   return (
     <>
@@ -27,10 +30,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/signup" element={<Register />}/>
-          <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<Home searchGame={searchGame} />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/Soundtracks" element={<Soundtracks />} />
+          <Route path="/login" element={<Login setUsername={setUsername} />}/>
+          <Route element={<ProtectedRoutes/>}>
+            <Route path="/home" element={<Home searchGame={searchGame} username={username} />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/Soundtracks" element={<Soundtracks />} />
+          </Route>
         </Routes>
       </div>
       {showFooter && <Footer />}

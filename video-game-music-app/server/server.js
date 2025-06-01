@@ -4,6 +4,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const bcrypt = require('bcrypt');
 const db = require('./db');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 
@@ -27,19 +28,22 @@ app.post('/api/login', (req, res) => {
         // If we get an error, we return a message
         if(err){
             console.error('DB error:', err);
-            res.status(500).json({message: 'An error has occured while attempting login'});
+            return res.status(500).json({message: 'An error has occured while attempting login'});
         } 
         if(result.length === 0){
-            res.status(401).json({message: 'Failed to login. Email or password is invalid'});
+            return res.status(401).json({message: 'Failed to login. Email or password is invalid'});
         }
         const user = result[0];
         //Checks if the hashed passwords matched
         const match = await bcrypt.compare(password, user.password);
 
         if(match){
-            res.status(200).json({message: 'Login Successful!'});
+            //Generates a jwt token upon sucess
+            const token = jwt.sign({email: user.email}, process.env.JWT_SECRET);
+            return res.json({success: true, token: token, message: 'Authentication Successful!', username: user.username});
         } else{
-            res.status(401).json({message: 'Login Failed. Email or passowrd is invalid.'});
+            //If our response is not authenticated
+            return res.status(401).json({success: false, message: 'Login Failed. Email or password is invalid.'});
         }
     })
 })

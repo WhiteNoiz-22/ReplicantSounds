@@ -1,4 +1,4 @@
-import {useState} from 'react';
+
 import useDebounce from '../hooks/Debounce';
 import useFetchGames from '../hooks/useFetchGames'
 
@@ -7,7 +7,7 @@ function SearchBar({searchGame, setSearchGame}){
     // Handles our debounced search, 1000ms delay or 1 second
     const debouncedSearch = useDebounce(searchGame, 1000);
 
-    // dbouncted search for getting our values
+    // debounced search for getting our values
     const {data, isLoading, error} = useFetchGames(debouncedSearch);
 
     // Handles our search and sets it to the input

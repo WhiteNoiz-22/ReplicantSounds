@@ -3,12 +3,14 @@ import { useNavigate, Link } from "react-router";
 import axios from "axios";
 import '../styles/Login.css';
 
-function Login(){
+function Login({setUsername}){
 
     // Stores and sets our users email, initially empty string
     const [email, setEmail] = useState('');
     // Store and sets our users password, initially empty string
     const [password, setPassword] = useState('');
+    // Stores username
+    const [username, setLocalUsername] = useState('');
     // Stores and sets an error message if any
     const [error, setError] = useState('');
 
@@ -26,7 +28,13 @@ function Login(){
             const response = await axios.post('http://localhost:3000/api/login', {email, password});
 
             // If we have a positive response, we navigate to homepage
-            if(response.status === 200){
+            if(response.status == 200){
+                //We store our token
+                const token = response.data.token;
+                //Adds token to localStorage
+                localStorage.setItem('token', token);
+                //Sets username
+                setUsername(response.data.username);
                 navigate('/home');
             }
 

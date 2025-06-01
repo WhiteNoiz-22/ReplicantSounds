@@ -5,7 +5,7 @@ import useFetchGames from "../hooks/useFetchGames";
 import { useNavigate } from "react-router";
 
 
-function Home({searchGame}) {
+function Home({searchGame, username}) {
 
   // Our navigate hook
   const navigate = useNavigate();
@@ -13,6 +13,8 @@ function Home({searchGame}) {
   // Handles logging out and redirects user to the login page
   const handleLogout = () => {
     navigate('/login');
+    //Revokes login token once logged out
+    localStorage.removeItem('token');
   }
 
 
@@ -78,12 +80,12 @@ function Home({searchGame}) {
 
   return(
     <>
-    <DisplayHome data={data} handleLogout={handleLogout}/>
+    <DisplayHome data={data} handleLogout={handleLogout} username={username}/>
     </>
   )
 }
 
-function DisplayHome({ data, handleLogout }) {
+function DisplayHome({ data, handleLogout, username }) {
 
   if(!data || !data.results){
     return <h1>Loading games... please wait!</h1>
@@ -93,7 +95,7 @@ function DisplayHome({ data, handleLogout }) {
   return (
     <> 
       <button onClick={handleLogout} type="button" class="btn btn-primary">Logout?</button>
-      <h1>Welcome!</h1>
+      <h1>Welcome {username}!</h1>
       <h2>Most Popular Video Games</h2>
       <div className="containers">
         {data.results.slice(0, 21).map((game) => (
