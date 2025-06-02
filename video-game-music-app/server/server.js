@@ -39,7 +39,7 @@ app.post('/api/login', (req, res) => {
 
         if(match){
             //Generates a jwt token upon sucess
-            const token = jwt.sign({email: user.email}, process.env.JWT_SECRET);
+            const token = jwt.sign({email: user.email, user_id: user.id}, process.env.JWT_SECRET);
             return res.json({success: true, token: token, message: 'Authentication Successful!', username: user.username});
         } else{
             //If our response is not authenticated
@@ -47,6 +47,34 @@ app.post('/api/login', (req, res) => {
         }
     })
 })
+
+// This should add our soundtracks to our users library
+app.post("/api/soundtracks", (req, res) => {
+    const q = "INSERT INTO library (`user_id`, `game_id`, `gamename`) VALUES(?, ?, ?)";
+    const {user_id, game_id, gamename} = req.body;
+    db.query(q, [user_id, game_id, gamename], (error, result) => {
+        if(error){
+            console.error('Backend error: ', error);
+            return res.status(500).json({message: 'Could not add game to library'});
+        }
+        return res.status(200).json({message: "Game has been successfully added!"});
+    });
+});
+
+
+// This will get all our library games for the logged in user
+app.get("/api/library/:user_id", (req, res) => {
+    const {user_id} = req.params;
+    const q = "SELECT * FROM library WHERE user_id = ?";
+    db.query(q, [user_id], (error, results) => {
+        if(error){
+            console.error('Error while getting user library games: ', error);
+            return res.status(500).json({message: 'Could not fetch user library'});
+        }
+        return res.status(200).json(results);
+    });
+});
+
 
 // Port our server is running on
 const PORT = process.env.PORT || 3000;

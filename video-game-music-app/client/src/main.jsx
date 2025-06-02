@@ -6,6 +6,8 @@ import {BrowserRouter} from 'react-router-dom'
 import {QueryClientProvider, QueryClient} from  '@tanstack/react-query'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import "@fontsource/merriweather";
+
 
 
 const queryClient = new QueryClient();

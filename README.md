@@ -1,6 +1,6 @@
-﻿# Video Game Music App
+﻿# Replicant Sounds
 
-A React web application that displays the most popular video games and lets you quickly search for their soundtracks on Spotify or YouTube. Built with ReactJs, Vite, MySQL, Express, NodeJs, React Query, Bootstrap, and the RAWG Video Games Database API.
+Replicant Sounds displays the most popular video games and lets you quickly search for their soundtracks on Spotify or YouTube. It also allows users to add their favourite video game soundtracks to a library and create their own profile. Built with ReactJs, Vite, MySQL, Express, NodeJs, React Query, Bootstrap, and the RAWG Video Games Database API.
 
 ---
 
@@ -11,6 +11,7 @@ A React web application that displays the most popular video games and lets you 
 - **Navigation:** Simple navbar for Home, Library, and Soundtracks pages.
 - **Search Functionality:** Users can search for games they like using the search bar and add them to their library.
 - **User Authenthication**: Users create an account for the app and login (note: This feature is in progress and more will be implemented soon, such as a logout feature).
+- **Library Page** Users can now add video games soundtracks to their Library and view them on the library page.
 
 ---
 
@@ -23,7 +24,7 @@ A React web application that displays the most popular video games and lets you 
  
 ## Screenshots
 
-**Current Home Page:**
+**Current Build:**
 
 ![screenshot placeholder](video-game-music-app/client/public/screenshot.png)
 
@@ -40,8 +41,10 @@ A React web application that displays the most popular video games and lets you 
 
 ### Prerequisites
 
-- Node.js (v16+ recommended)
-- npm
+- **Node.js** (v16+ recommended)
+- **npm**
+- **MySQL** (running locally or remotely)
+- **RAWG API Key** (get one for free at [RAWG API Docs](https://rawg.io/apidocs))
 
 ### Installation
 
@@ -51,24 +54,53 @@ A React web application that displays the most popular video games and lets you 
    cd video-game-music-app
    ```
 
-2. **Install dependencies:**
+2. **Install dependencies for both client and server:**
    ```sh
+   cd client
    npm install
+   cd ../server
+   npm install
+   cd ..
    ```
 
-3. **Set up your API key:**
-   - Create a `.env` file in the root directory:
+3. **Set up environment variables:**
+
+   - **Client:**  
+     Create a `.env` file in the `client` directory:
      ```
      VITE_API_KEY=your_rawg_api_key_here
      ```
-   - You can get a free API key from [RAWG](https://rawg.io/apidocs).
+     You can copy `.env.example` as a template.
 
-4. **Start the development server:**
+   - **Server:**  
+     Create a `.env` file in the `server` directory:
+     ```
+     DB_HOST=your_host
+     DB_USER=your_username
+     DB_PASSWORD=your_password
+     DB_NAME=your_database_name
+     DB_PORT=your_db_port
+     JWT_SECRET=your_jwt_key
+     ```
+     You can copy `.env.example` as a template.
+
+4. **Set up your MySQL database:**
+   - Create a database and the required tables (`users`, `library`, etc.) as described in backend code.
+   - Make sure your credentials in `.env` match your MySQL setup.
+
+5. **Start the backend server:**
    ```sh
+   cd server
    npm run dev
    ```
 
-5. **Open in your browser:**
+6. **Start the frontend development server:**
+   ```sh
+   cd ../client
+   npm run dev
+   ```
+
+7. **Open in your browser:**
    - Visit [http://localhost:5173](http://localhost:5173)
 
 ---

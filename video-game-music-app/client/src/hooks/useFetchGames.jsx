@@ -12,6 +12,10 @@ function useFetchGames(query) {
     if (query && query.trim() && query.length > 0) {
       url += `&search=${encodeURIComponent(query)}`;
     }
+    
+
+
+
     const response = await axios.get(url);
     return response.data;
   };
