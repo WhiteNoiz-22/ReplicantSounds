@@ -1,6 +1,6 @@
 ﻿# Replicant Sounds
 
-Replicant Sounds displays the most popular video games and lets you quickly search for their soundtracks on Spotify or YouTube. It also allows users to add their favourite video game soundtracks to a library and create their own profile. Built with ReactJs, Vite, MySQL, Express, NodeJs, React Query, Bootstrap, and the RAWG Video Games Database API.
+Replicant Sounds displays the most popular video games and lets you quickly search for their soundtracks on Spotify or YouTube. It also allows users to add their favourite video game soundtracks to a library and create their own profile. Built with ReactJs, Vite, MySQL, Express, NodeJs, React Query, JWT, bcrypt, Bootstrap, and the RAWG Video Games Database API.
 
 ---
 
@@ -9,8 +9,8 @@ Replicant Sounds displays the most popular video games and lets you quickly sear
 - **Popular Games:** View a grid of the most popular video games with images, release year, ratings. It also includes auto-searches for the games soundtrack, which will redirect you to the apps when the buttons are pressed.
 - **Responsive UI:** Clean, responsive layout using Bootstrap and custom CSS.
 - **Navigation:** Simple navbar for Home, Library, and Soundtracks pages.
-- **Search Functionality:** Users can search for games they like using the search bar and add them to their library.
-- **User Authenthication**: Users create an account for the app and login (note: This feature is in progress and more will be implemented soon, such as a logout feature).
+- **Search Functionality:** Users can search for games they like using the search bar.
+- **User Authenthication**: Users create an account for the app, login and logout.
 - **Library Page** Users can now add video games soundtracks to their Library and view them on the library page.
 
 ---
@@ -26,14 +26,16 @@ Replicant Sounds displays the most popular video games and lets you quickly sear
 
 **Current Build:**
 
-![screenshot placeholder](video-game-music-app/client/public/screenshot.png)
+![home](video-game-music-app/client/public/homepagenew.png)
 
-![searchbar](video-game-music-app/client/public/search.png)
+![library](video-game-music-app/client/public/library.png)
 
-![login](video-game-music-app/client/public/loginpage1.png
-)
+![login](video-game-music-app/client/public/LoginPage.png)
 
 ![signup](video-game-music-app/client/public/sign-up.png)
+
+
+![searchbar](video-game-music-app/client/public/search.png)
 
 ---
 
@@ -115,6 +117,8 @@ Replicant Sounds displays the most popular video games and lets you quickly sear
 - [React Query](https://tanstack.com/query/latest)
 - [Bootstrap](https://getbootstrap.com/)
 - [RAWG Video Games Database API](https://rawg.io/apidocs)
+- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+- [JWT](https://www.npmjs.com/package/jsonwebtoken)
 
 ---
 
