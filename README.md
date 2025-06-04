@@ -34,7 +34,6 @@ Replicant Sounds displays the most popular video games and lets you quickly sear
 
 ![signup](video-game-music-app/client/public/sign-up.png)
 
-
 ![searchbar](video-game-music-app/client/public/search.png)
 
 ---

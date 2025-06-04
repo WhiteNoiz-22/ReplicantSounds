@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/Login.css";
@@ -14,6 +14,12 @@ function Login({ setUsername }) {
 
   // Our navigation hook
   const navigate = useNavigate();
+
+  //Our letters
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const targetText = "Replicant Sounds";
+  const intervalRef = useRef(null);
+  const [displayText, setDisplayText] = useState("Replicant Sounds");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +39,7 @@ function Login({ setUsername }) {
         //We store our token
         const token = response.data.token;
         //Adds token to localStorage
-        localStorage.setItem("token", token);
+        localStorage.setItem("loginToken", token);
         //Sets username
         setUsername(response.data.username);
         navigate("/home");
@@ -43,6 +49,29 @@ function Login({ setUsername }) {
       setError("Invalid email or password.");
     }
   };
+
+  useEffect(() => {
+    let iterations = 0;
+    intervalRef.current = setInterval(() => {
+      setDisplayText((prev) => {
+        return targetText
+          .split("")
+          .map((char, idx) => {
+            if (char === " ") return " ";
+            if (idx < iterations) return targetText[idx];
+            return letters[Math.floor(Math.random() * letters.length)];
+          })
+          .join("");
+      });
+      iterations += 1 / 2; // Adjust speed here (higher = slower)
+      if (iterations >= targetText.length) {
+        clearInterval(intervalRef.current);
+        setDisplayText(targetText);
+      }
+    }, 80);
+
+    return () => clearInterval(intervalRef.current);
+  }, []);
 
   return (
     <>
@@ -54,7 +83,7 @@ function Login({ setUsername }) {
           className="log-card"
         >
           <h1 className="glitch" data-text="Replicant Sounds">
-            Replicant Sounds
+            {displayText}
           </h1>
           <h3 className="glitch">Login</h3>
           <form onSubmit={handleSubmit}>
@@ -81,13 +110,14 @@ function Login({ setUsername }) {
               />
             </div>
             <div className="center-btn">
-            <button type="submit" className="btn btn-primary">
-              Login
-            </button>
+              <button type="submit" className="btn btn-primary">
+                Login
+              </button>
             </div>
             <Link className="link-color" to="/signup">
-                        Register Here
+              Register Here
             </Link>
+
             {error && <p>An error has occured: {error}</p>}
           </form>
         </motion.div>
