@@ -15,9 +15,6 @@ function Register() {
   // Our navigation hook
   const navigate = useNavigate();
 
-  //Our letters
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,8 +38,6 @@ function Register() {
     }
   };
 
-
-  
   return (
     <>
       <div className="log-container">

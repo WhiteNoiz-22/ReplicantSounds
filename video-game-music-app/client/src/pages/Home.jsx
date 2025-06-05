@@ -14,11 +14,11 @@ function Home({ searchGame, username }) {
   const handleLogout = () => {
     navigate("/login");
     //Revokes login token once logged out
-    localStorage.removeItem("token");
+    localStorage.removeItem("loginToken");
   };
 
   // Get token from localStorage
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("loginToken");
   // Decode token to get user_id
   let user_id = "";
   if (token) {

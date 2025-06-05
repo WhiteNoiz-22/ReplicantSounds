@@ -7,10 +7,11 @@ import { useQueryClient } from "@tanstack/react-query";
 
 function Library() {
   const [gameIds, setGameIds] = useState([]);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("loginToken");
   let user_id = "";
   const queryClient = useQueryClient();
 
+  // Decodes our login token to get user id
   if (token) {
     const decoded = jwtDecode(token);
     user_id = decoded.user_id;
@@ -24,7 +25,7 @@ function Library() {
     });
   }, [user_id]);
 
-  const { data: rawgGames = [], isLoading } = useFetchGamesByIds(gameIds);
+const { data: rawgGames = [], isLoading } = useFetchGamesByIds(gameIds);
 
 const handleRemoveGame = async (game_id) => {
   try {

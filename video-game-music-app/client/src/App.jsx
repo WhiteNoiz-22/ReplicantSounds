@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
+
 function App() {
   // Stores our data variables here so that we can use them inside of other components
   const [searchGame, setSearchGame] = useState("");
